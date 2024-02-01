@@ -1,7 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getit/flutter_getit.dart';
+import 'package:lab_clinicas_core/lab_clinicas_core.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const LabClinicasSelfServiceApp());
+}
+
+class LabClinicasSelfServiceApp extends StatelessWidget {
+  const LabClinicasSelfServiceApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return LabClinicasCoreConfig(
+      title: "Lab Clinicas Auto Atendimento",
+      pagesBuilders: [
+        FlutterGetItPageBuilder(
+          page: (_) => const MyHomePage(title: "ALGUMA COISA"), 
+          path: "/",
+        ),
+      ],
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
