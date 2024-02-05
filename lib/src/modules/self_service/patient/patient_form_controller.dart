@@ -52,4 +52,24 @@ mixin PatientFormController on State<PatientPage> {
       guardianIdentificationNumberEC.text = model.guardianIdentificationNumber;
     }
   }
+
+  PatientModel updatePatient(PatientModel patient) {
+    return patient.copyWith(
+      name: nameEC.text,
+      email: emailEC.text,
+      phoneNumber: phoneEC.text,
+      document: documentEC.text,
+      address: patient.address.copyWith(
+        cep: cepEC.text,
+        streetAddress: streetEC.text,
+        number: numberEC.text,
+        addressComplement: complementEC.text,
+        state: stateEC.text,
+        city: cityEC.text,
+        district: districtEC.text,
+      ),
+      guardian: guardianEC.text,
+      guardianIdentificationNumber: guardianIdentificationNumberEC.text,
+    );
+  }
 }

@@ -4,8 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
 import 'package:lab_clinicas_self_service/src/models/self_service_model.dart';
+import 'package:lab_clinicas_self_service/src/modules/self_service/patient/patient_controller.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/patient/patient_form_controller.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/self_service_controller.dart';
+import 'package:signals_flutter/signals_flutter.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../widgets/lab_clinicas_self_service_app_bar.dart';
@@ -18,15 +20,26 @@ class PatientPage extends StatefulWidget {
   State<PatientPage> createState() => _PatientPageState();
 }
 
-class _PatientPageState extends State<PatientPage> with PatientFormController {
+class _PatientPageState extends State<PatientPage> with PatientFormController, MessageViewMixin {
 
   final _selfServiceController = Injector.get<SelfServiceController>();
+
+  final controller = Injector.get<PatientController>();
 
   late bool patientFound;
   late bool enableForm;
 
   @override
   void initState() {
+
+    messageListener(controller);
+
+    effect(() {
+
+      if(controller.nextStep) {
+        _selfServiceController.updatePatientAndGoDocument(controller.patient);
+      }
+    });
 
     final SelfServiceModel(:patient) = _selfServiceController.model;
 
@@ -307,7 +320,17 @@ class _PatientPageState extends State<PatientPage> with PatientFormController {
                       height: 48,
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          
+                          final valid = formKey.currentState?.validate() ?? false;
+
+                          if(valid) {
+
+                            final updatedPatient = updatePatient(_selfServiceController.model.patient!);
+
+                            controller.updateAndNext(updatedPatient);
+                          }
+                        },
                         child: Visibility(
                           visible: !patientFound,
                           replacement: const Text("SALVAR E CONTINUAR"),
@@ -337,7 +360,10 @@ class _PatientPageState extends State<PatientPage> with PatientFormController {
                           child: SizedBox(
                             height: 48,
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.patient = _selfServiceController.model.patient;
+                                controller.goNextStep();
+                              },
                               child: const Text("CONTINUAR"),
                             ),
                           ),

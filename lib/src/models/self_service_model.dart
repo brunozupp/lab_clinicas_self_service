@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:lab_clinicas_self_service/src/models/patient_model.dart';
 
 final class SelfServiceModel {
@@ -9,8 +8,6 @@ final class SelfServiceModel {
     this.lastName,
     this.patient
   });
-
-
 
   final String? name;
   final String? lastName;
