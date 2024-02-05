@@ -326,9 +326,14 @@ class _PatientPageState extends State<PatientPage> with PatientFormController, M
 
                           if(valid) {
 
-                            final updatedPatient = updatePatient(_selfServiceController.model.patient!);
+                            if(patientFound) {
+                              final updatedPatient = updatePatient(_selfServiceController.model.patient!);
 
-                            controller.updateAndNext(updatedPatient);
+                              controller.updateAndNext(updatedPatient);
+                            } else {
+                              controller.saveAndNext(createRegisterPatient());
+                            }
+                            
                           }
                         },
                         child: Visibility(
