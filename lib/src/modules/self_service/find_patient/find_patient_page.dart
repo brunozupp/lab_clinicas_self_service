@@ -1,7 +1,11 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
+import 'package:lab_clinicas_self_service/src/modules/self_service/find_patient/find_patient_controller.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/self_service_controller.dart';
+import 'package:signals_flutter/signals_flutter.dart';
 import 'package:validatorless/validatorless.dart';
     
 class FindPatientPage extends StatefulWidget {
@@ -12,12 +16,29 @@ class FindPatientPage extends StatefulWidget {
   State<FindPatientPage> createState() => _FindPatientPageState();
 }
 
-class _FindPatientPageState extends State<FindPatientPage> {
+class _FindPatientPageState extends State<FindPatientPage> with MessageViewMixin {
 
-  final _selfServiceController = Injector.get<SelfServiceController>();
+  final _controller = Injector.get<FindPatientController>();
 
   final _formKey = GlobalKey<FormState>();
   final _cpfEC = TextEditingController();
+
+  @override
+  void initState() {
+    
+    messageListener(_controller);
+
+    effect(() {
+
+      final FindPatientController(:patient, :patientNotFound) = _controller;
+
+      if(patient != null || patientNotFound != null) {
+        Injector.get<SelfServiceController>().goToFormPatient(patient);
+      }
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +59,7 @@ class _FindPatientPageState extends State<FindPatientPage> {
               ];
             },
             onSelected: (value) async {
-             
+              Injector.get<SelfServiceController>().restartProcess();
             },
           ),
         ],
@@ -78,6 +99,10 @@ class _FindPatientPageState extends State<FindPatientPage> {
                           decoration: const InputDecoration(
                             label: Text("Digite seu CPF"),
                           ),
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            CpfInputFormatter(),
+                          ],
                         ),
                         const SizedBox(
                           height: 24,
@@ -93,7 +118,9 @@ class _FindPatientPageState extends State<FindPatientPage> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _controller.continueWithoutDocument();
+                              },
                               child: const Text(
                                 "Clique aqui",
                                 style: TextStyle(
@@ -117,7 +144,7 @@ class _FindPatientPageState extends State<FindPatientPage> {
                               final valid = _formKey.currentState?.validate() ?? false;
     
                               if(valid) {
-                                
+                                _controller.findPatientByDocument(_cpfEC.text);
                               }
                             },
                             child: const Text("CONTINUAR"),
