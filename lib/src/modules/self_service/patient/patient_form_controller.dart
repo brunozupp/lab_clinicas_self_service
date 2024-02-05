@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lab_clinicas_self_service/src/models/patient_model.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/patient/patient_page.dart';
 
 mixin PatientFormController on State<PatientPage> {
@@ -32,5 +33,23 @@ mixin PatientFormController on State<PatientPage> {
     districtEC.dispose();
     guardianEC.dispose();
     guardianIdentificationNumberEC.dispose();
+  }
+
+  void initializeForm(final PatientModel? model) {
+    if(model != null) {
+      nameEC.text = model.name;
+      emailEC.text = model.email;
+      phoneEC.text = model.phoneNumber;
+      documentEC.text = model.document;
+      cepEC.text = model.address.cep;
+      streetEC.text = model.address.streetAddress;
+      numberEC.text = model.address.number;
+      complementEC.text = model.address.addressComplement;
+      stateEC.text = model.address.state;
+      cityEC.text = model.address.city;
+      districtEC.text = model.address.district;
+      guardianEC.text = model.guardian;
+      guardianIdentificationNumberEC.text = model.guardianIdentificationNumber;
+    }
   }
 }
