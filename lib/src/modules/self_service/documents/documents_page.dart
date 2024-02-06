@@ -139,8 +139,8 @@ class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin {
                         ),
                       ),
                       const SizedBox(
-                          width: 16,
-                        ),
+                        width: 16,
+                      ),
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {},
