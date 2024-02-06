@@ -1,3 +1,4 @@
+import 'package:asyncstate/asyncstate.dart';
 import 'package:camera/camera.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -121,7 +122,14 @@ class _DocumentsScanPageState extends State<DocumentsScanPage> {
                   width: sizeOf.width * 0.8,
                   height: 48,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+
+                      final nav = Navigator.of(context);
+
+                      final photo = await cameraController.takePicture().asyncLoader();
+
+                      nav.pushNamed("/self-service/documents/scan/confirm", arguments: photo);
+                    },
                     child: const Text("TIRAR FOTO"),
                   ),
                 ),
