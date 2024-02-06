@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/documents/scan_confirm/documents_scan_confirm_controller.dart';
+import 'package:signals_flutter/signals_flutter.dart';
     
 class DocumentsScanConfirmPage extends StatefulWidget {
 
@@ -22,7 +23,28 @@ class _DocumentsScanConfirmPageState extends State<DocumentsScanConfirmPage> wit
   @override
   void initState() {
     messageListener(controller);
+
+    controller.pathRemoteStorage.listen(context, () { 
+      if(controller.pathRemoteStorage.value != null && controller.pathRemoteStorage.value != "") {
+        
+        /**
+         * Não posso usar o popUntil com valor de retorno, por isso preciso utilizar dois pop para
+         * retornar para a tela que desejo.
+         */
+        Navigator.of(context).pop();
+        Navigator.of(context).pop(controller.pathRemoteStorage.value);
+      }
+    });
+
+    
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.pathRemoteStorage.dispose();
+    super.dispose();
   }
 
   @override
@@ -102,7 +124,12 @@ class _DocumentsScanConfirmPageState extends State<DocumentsScanConfirmPage> wit
                       child: SizedBox(
                         height: 48,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            final imageBytes = await photo.readAsBytes();
+                            final fileName = photo.name;
+
+                            await controller.uploadImage(imageBytes, fileName);
+                          },
                           child: const Text("SALVAR"),
                         ),
                       ),
