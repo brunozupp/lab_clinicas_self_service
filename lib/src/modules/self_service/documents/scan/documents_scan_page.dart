@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
@@ -52,14 +53,14 @@ class _DocumentsScanPageState extends State<DocumentsScanPage> {
               children: [
                 Image.asset("assets/images/cam_icon.png"),
                 const SizedBox(
-                  height: 24,
+                  height: 15,
                 ),
                 const Text(
                   "TIRAR A FOTO AGORA",
                   style: LabClinicasTheme.titleSmallStyle,
                 ),
                 const SizedBox(
-                  height: 32,
+                  height: 15,
                 ),
                 const Text(
                   "Posicione o documento dentro do quadrado abaixo e aperte o botão para tirar a foto",
@@ -87,7 +88,24 @@ class _DocumentsScanPageState extends State<DocumentsScanPage> {
                         connectionState: ConnectionState.done,
                       ):
                         if(cameraController.value.isInitialized) {
-                          return CameraPreview(cameraController);
+                          return ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: SizedBox(
+                              width: sizeOf.width * 0.45,
+                              child: CameraPreview(
+                                cameraController,
+                                child: DottedBorder(
+                                  dashPattern: const [1,10,1,3],
+                                  borderType: BorderType.RRect,
+                                  strokeWidth: 4,
+                                  strokeCap: StrokeCap.square,
+                                  color: LabClinicasTheme.orangeColor,
+                                  radius: const Radius.circular(16),
+                                  child: const SizedBox.expand(),
+                                ),
+                              ),
+                            ),
+                          );
                         }
                     }
 
@@ -99,13 +117,13 @@ class _DocumentsScanPageState extends State<DocumentsScanPage> {
                 const SizedBox(
                   height: 24,
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: LabClinicasTheme.orangeColor,
-                    fixedSize: const Size.fromHeight(48),
+                SizedBox(
+                  width: sizeOf.width * 0.8,
+                  height: 48,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text("TIRAR FOTO"),
                   ),
-                  child: const Text("FINALIZAR"),
                 ),
               ],
             ),
