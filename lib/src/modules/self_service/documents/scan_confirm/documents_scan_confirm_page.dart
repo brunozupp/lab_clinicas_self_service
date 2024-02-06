@@ -36,8 +36,6 @@ class _DocumentsScanConfirmPageState extends State<DocumentsScanConfirmPage> wit
       }
     });
 
-    
-
     super.initState();
   }
 
