@@ -1,7 +1,10 @@
+import 'package:asyncstate/asyncstate.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
+import 'package:signals_flutter/signals_flutter.dart';
+
 import 'package:lab_clinicas_self_service/src/models/patient_model.dart';
 import 'package:lab_clinicas_self_service/src/models/self_service_model.dart';
-import 'package:signals_flutter/signals_flutter.dart';
+import 'package:lab_clinicas_self_service/src/repositories/information_form/i_information_form_repository.dart';
 
 enum FormSteps {
   none,
@@ -14,11 +17,20 @@ enum FormSteps {
 }
 
 class SelfServiceController with MessageStateMixin {
+
+  final IInformationFormRepository _informationFormRepository;
+
+  SelfServiceController({
+    required IInformationFormRepository informationFormRepository,
+  }) : _informationFormRepository = informationFormRepository;
+
   final _step = ValueSignal(FormSteps.none);
   FormSteps get step => _step();
 
   var _model = const SelfServiceModel();
   SelfServiceModel get model => _model;
+
+  var password = "";
 
   void startProcess() {
     _step.forceUpdate(FormSteps.whoIAm);
@@ -80,5 +92,18 @@ class SelfServiceController with MessageStateMixin {
     _model = _model.copyWith(
       documents: () => {},
     );
+  }
+
+  Future<void> finalize() async {
+
+    final result = await _informationFormRepository.register(model).asyncLoader();
+
+    switch(result) {
+      case Left():
+        showError("Erro ao registrar atendimento");
+      case Right():
+        password = "${_model.name} ${_model.lastName}";
+        _step.forceUpdate(FormSteps.done);
+    }
   }
 }
