@@ -13,8 +13,6 @@ class DonePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
 
-    final password = ModalRoute.of(context)?.settings.arguments ?? "Erro ao recuperar senha";
-
     return Scaffold(
       body: Align(
         alignment: Alignment.topCenter,
@@ -111,7 +109,10 @@ class DonePage extends StatelessWidget {
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: const Text("ENVIAR SENHA VIA SMS"),
+                          child: const Text(
+                            "ENVIAR SENHA VIA SMS",
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ),

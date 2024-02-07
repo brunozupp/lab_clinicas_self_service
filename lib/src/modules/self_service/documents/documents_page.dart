@@ -85,10 +85,10 @@ class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin {
                         label: "CARTEIRINHA",
                         totalFiles: totalHealthInsuranceCard,
                         onTap: () async {
-                          final filePath = await Navigator.of(context).pushNamed<String?>("/self-service/documents/scan");
+                          final filePath = await Navigator.of(context).pushNamed("/self-service/documents/scan");
 
                           if(filePath != null && filePath != "") {
-                            _selfServiceController.registerDocument(DocumentType.healthInsuranceCard, filePath);
+                            _selfServiceController.registerDocument(DocumentType.healthInsuranceCard, filePath.toString());
 
                             setState(() { });
                           }
@@ -103,10 +103,10 @@ class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin {
                         label: "PEDIDO MÉDICO",
                         totalFiles: totalMedicalOrder,
                         onTap: () async {
-                          final filePath = await Navigator.of(context).pushNamed<String?>("/self-service/documents/scan");
+                          final filePath = await Navigator.of(context).pushNamed("/self-service/documents/scan");
 
                           if(filePath != null && filePath != "") {
-                            _selfServiceController.registerDocument(DocumentType.medicalOrder, filePath);
+                            _selfServiceController.registerDocument(DocumentType.medicalOrder, filePath.toString());
 
                             setState(() { });
                           }

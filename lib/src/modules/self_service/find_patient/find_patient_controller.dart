@@ -1,13 +1,13 @@
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
 import 'package:lab_clinicas_self_service/src/models/patient_model.dart';
-import 'package:lab_clinicas_self_service/src/repositories/patients/patients_repository.dart';
+import 'package:lab_clinicas_self_service/src/repositories/patients/i_patients_repository.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
 class FindPatientController with MessageStateMixin {
-  final PatientsRepository _patientsRepository;
+  final IPatientsRepository _patientsRepository;
 
   FindPatientController({
-    required PatientsRepository patientsRepository,
+    required IPatientsRepository patientsRepository,
   }) : _patientsRepository = patientsRepository;
 
   final _patientNotFound = ValueSignal<bool?>(null);
