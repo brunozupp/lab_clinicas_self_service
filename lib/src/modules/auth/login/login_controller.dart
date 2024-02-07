@@ -2,13 +2,13 @@ import 'package:asyncstate/asyncstate.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
-import 'package:lab_clinicas_self_service/src/services/user_login/user_login_service.dart';
+import '../../../services/user_login/i_user_login_service.dart';
 
 class LoginController with MessageStateMixin {
-  final UserLoginService _userLoginService;
+  final IUserLoginService _userLoginService;
 
   LoginController({
-    required UserLoginService userLoginService,
+    required IUserLoginService userLoginService,
   }) : _userLoginService = userLoginService;
 
   final _obscurePassword = signal(true);

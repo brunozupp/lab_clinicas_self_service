@@ -27,8 +27,6 @@ void main() {
     log("Erro não tratado", error: error, stackTrace: stack);
     throw error;
   });
-
-  
 }
 
 class LabClinicasSelfServiceApp extends StatelessWidget {
