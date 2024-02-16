@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
+import 'package:lab_clinicas_self_service/src/core/constants/images_constants.dart';
 import 'package:lab_clinicas_self_service/src/modules/auth/login/login_controller.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 import 'package:validatorless/validatorless.dart';
@@ -52,7 +53,7 @@ class _LoginPageState extends State<LoginPage> with MessageViewMixin {
           ),
           decoration: const BoxDecoration(
               image: DecorationImage(
-            image: AssetImage("assets/images/background_login.png"),
+            image: AssetImage(ImagesConstants.backgroundLogin),
             fit: BoxFit.cover,
           )),
           child: Center(

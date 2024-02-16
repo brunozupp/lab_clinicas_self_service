@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
+import 'package:lab_clinicas_self_service/src/core/constants/images_constants.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/self_service_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:validatorless/validatorless.dart';
@@ -75,7 +76,7 @@ class _WhoIAmPageState extends State<WhoIAmPage> {
                 ),
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/images/background_login.png"),
+                    image: AssetImage(ImagesConstants.backgroundLogin),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -91,7 +92,7 @@ class _WhoIAmPageState extends State<WhoIAmPage> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          Image.asset("assets/images/logo_vertical.png"),
+                          Image.asset(ImagesConstants.logoVertical),
                           const SizedBox(
                             height: 48,
                           ),

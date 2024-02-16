@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
+import 'package:lab_clinicas_self_service/src/core/constants/images_constants.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/self_service_controller.dart';
     
 class DonePage extends StatelessWidget {
@@ -32,7 +33,7 @@ class DonePage extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Image.asset("assets/images/stroke_check.png"),
+                Image.asset(ImagesConstants.strokeCheck),
                 const SizedBox(
                   height: 15,
                 ),

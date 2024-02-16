@@ -5,6 +5,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
+import 'package:lab_clinicas_self_service/src/core/constants/images_constants.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/documents/scan_confirm/documents_scan_confirm_controller.dart';
 import 'package:signals_flutter/signals_flutter.dart';
     
@@ -71,7 +72,7 @@ class _DocumentsScanConfirmPageState extends State<DocumentsScanConfirmPage> wit
             ),
             child: Column(
               children: [
-                Image.asset("assets/images/foto_confirm_icon.png"),
+                Image.asset(ImagesConstants.fotoConfirmIcon),
                 const SizedBox(
                   height: 15,
                 ),

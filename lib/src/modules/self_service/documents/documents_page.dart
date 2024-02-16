@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
+import 'package:lab_clinicas_self_service/src/core/constants/images_constants.dart';
 import 'package:lab_clinicas_self_service/src/models/self_service_model.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/documents/widgets/document_box_widget.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/self_service_controller.dart';
@@ -52,7 +53,7 @@ class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin {
             ),
             child: Column(
               children: [
-                Image.asset("assets/images/folder.png"),
+                Image.asset(ImagesConstants.folder),
                 const SizedBox(
                   height: 24,
                 ),
@@ -81,7 +82,7 @@ class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin {
                     children: [
                       DocumentBoxWidget(
                         uploaded: totalHealthInsuranceCard > 0,
-                        icon: Image.asset("assets/images/id_card.png"),
+                        icon: Image.asset(ImagesConstants.card),
                         label: "CARTEIRINHA",
                         totalFiles: totalHealthInsuranceCard,
                         onTap: () async {
@@ -99,7 +100,7 @@ class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin {
                       ),
                       DocumentBoxWidget(
                         uploaded: totalMedicalOrder > 0,
-                        icon: Image.asset("assets/images/document.png"),
+                        icon: Image.asset(ImagesConstants.document),
                         label: "PEDIDO MÉDICO",
                         totalFiles: totalMedicalOrder,
                         onTap: () async {

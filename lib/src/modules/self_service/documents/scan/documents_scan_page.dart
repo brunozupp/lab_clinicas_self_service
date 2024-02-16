@@ -4,6 +4,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
+import 'package:lab_clinicas_self_service/src/core/constants/images_constants.dart';
     
 class DocumentsScanPage extends StatefulWidget {
 
@@ -52,7 +53,7 @@ class _DocumentsScanPageState extends State<DocumentsScanPage> {
             ),
             child: Column(
               children: [
-                Image.asset("assets/images/cam_icon.png"),
+                Image.asset(ImagesConstants.camIcon),
                 const SizedBox(
                   height: 15,
                 ),

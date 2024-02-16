@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
+import 'package:lab_clinicas_self_service/src/core/constants/images_constants.dart';
 import 'package:lab_clinicas_self_service/src/models/self_service_model.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/patient/patient_controller.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/patient/patient_form_controller.dart';
@@ -86,8 +87,8 @@ class _PatientPageState extends State<PatientPage> with PatientFormController, M
                 children: [
                   Visibility(
                     visible: patientFound,
-                    replacement: Image.asset("assets/images/lupa_icon.png"),
-                    child: Image.asset("assets/images/check_icon.png"),
+                    replacement: Image.asset(ImagesConstants.lupaIcon),
+                    child: Image.asset(ImagesConstants.checkIcon),
                   ),
                   const SizedBox(
                     height: 24,

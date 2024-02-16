@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/constants/images_constants.dart';
+
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
@@ -23,7 +25,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Image.asset("assets/images/logo_vertical.png"),
+        child: Image.asset(ImagesConstants.logoVertical),
       ),
     );
   }

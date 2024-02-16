@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
+import 'package:lab_clinicas_self_service/src/core/constants/images_constants.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/find_patient/find_patient_controller.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/self_service_controller.dart';
 import 'package:signals_flutter/signals_flutter.dart';
@@ -58,7 +59,7 @@ class _FindPatientPageState extends State<FindPatientPage> with MessageViewMixin
               ),
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/background_login.png"),
+                  image: AssetImage(ImagesConstants.backgroundLogin),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -74,7 +75,7 @@ class _FindPatientPageState extends State<FindPatientPage> with MessageViewMixin
                     key: _formKey,
                     child: Column(
                       children: [
-                        Image.asset("assets/images/logo_vertical.png"),
+                        Image.asset(ImagesConstants.logoVertical),
                         const SizedBox(
                           height: 48,
                         ),
