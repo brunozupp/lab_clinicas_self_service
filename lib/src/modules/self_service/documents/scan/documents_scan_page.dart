@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
 import 'package:lab_clinicas_self_service/src/core/constants/images_constants.dart';
+import 'package:lab_clinicas_self_service/src/core/constants/routes_constants.dart';
     
 class DocumentsScanPage extends StatefulWidget {
 
@@ -129,7 +130,7 @@ class _DocumentsScanPageState extends State<DocumentsScanPage> {
 
                       final photo = await cameraController.takePicture().asyncLoader();
 
-                      nav.pushNamed("/self-service/documents/scan/confirm", arguments: photo);
+                      nav.pushNamed(RoutesConstants.scanConfirm, arguments: photo);
                     },
                     child: const Text("TIRAR FOTO"),
                   ),

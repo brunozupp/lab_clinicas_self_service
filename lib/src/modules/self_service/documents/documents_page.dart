@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
 import 'package:lab_clinicas_self_service/src/core/constants/images_constants.dart';
+import 'package:lab_clinicas_self_service/src/core/constants/routes_constants.dart';
 import 'package:lab_clinicas_self_service/src/models/self_service_model.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/documents/widgets/document_box_widget.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/self_service_controller.dart';
@@ -86,7 +87,7 @@ class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin {
                         label: "CARTEIRINHA",
                         totalFiles: totalHealthInsuranceCard,
                         onTap: () async {
-                          final filePath = await Navigator.of(context).pushNamed("/self-service/documents/scan");
+                          final filePath = await Navigator.of(context).pushNamed(RoutesConstants.documentsScan);
 
                           if(filePath != null && filePath != "") {
                             _selfServiceController.registerDocument(DocumentType.healthInsuranceCard, filePath.toString());
@@ -104,7 +105,7 @@ class _DocumentsPageState extends State<DocumentsPage> with MessageViewMixin {
                         label: "PEDIDO MÉDICO",
                         totalFiles: totalMedicalOrder,
                         onTap: () async {
-                          final filePath = await Navigator.of(context).pushNamed("/self-service/documents/scan");
+                          final filePath = await Navigator.of(context).pushNamed(RoutesConstants.documentsScan);
 
                           if(filePath != null && filePath != "") {
                             _selfServiceController.registerDocument(DocumentType.medicalOrder, filePath.toString());

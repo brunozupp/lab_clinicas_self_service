@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
 import 'package:lab_clinicas_self_service/src/core/constants/images_constants.dart';
+import 'package:lab_clinicas_self_service/src/core/constants/routes_constants.dart';
 import 'package:lab_clinicas_self_service/src/modules/auth/login/login_controller.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 import 'package:validatorless/validatorless.dart';
@@ -25,7 +26,7 @@ class _LoginPageState extends State<LoginPage> with MessageViewMixin {
     
     effect(() {
       if(controller.logged) {
-        Navigator.of(context).pushReplacementNamed("/home");
+        Navigator.of(context).pushReplacementNamed(RoutesConstants.home);
       }
     });
     

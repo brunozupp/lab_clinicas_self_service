@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lab_clinicas_self_service/src/core/constants/routes_constants.dart';
 
 import '../../core/constants/images_constants.dart';
 
@@ -15,7 +16,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     
     WidgetsBinding.instance.addPostFrameCallback((_) { 
-      Navigator.of(context).pushReplacementNamed("/auth/login");
+      Navigator.of(context).pushReplacementNamed(RoutesConstants.login);
     });
 
     super.initState();

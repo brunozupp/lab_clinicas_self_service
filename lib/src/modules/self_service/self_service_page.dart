@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
+import 'package:lab_clinicas_self_service/src/core/constants/routes_constants.dart';
 import 'package:lab_clinicas_self_service/src/modules/self_service/self_service_controller.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
@@ -26,7 +27,7 @@ class _SelfServicePageState extends State<SelfServicePage> with MessageViewMixin
 
       effect(() {
 
-        var baseRoute = '/self-service';
+        var baseRoute = RoutesConstants.selfService;
 
         final step = controller.step;
 
@@ -44,7 +45,7 @@ class _SelfServicePageState extends State<SelfServicePage> with MessageViewMixin
           case FormSteps.done:
             baseRoute += "/done";
           case FormSteps.restart:
-            Navigator.of(context).popUntil(ModalRoute.withName("/self-service"));
+            Navigator.of(context).popUntil(ModalRoute.withName(RoutesConstants.selfService));
             controller.startProcess();
             return;
         }
